@@ -8,7 +8,7 @@
 #
 
 # the apt cookbook currently doesn't support installing the key they way I
-# need to for this recipie
+# need to for this recipe
 
 include_recipe 'apt'
 
@@ -21,7 +21,7 @@ template '/etc/apt/sources.list.d/bitlbee.list' do
     source: node['bitlbee']['source']
   })
   action :create_if_missing
-  notifies :run, 'execute[add-bitlbee-gpg-key]', :immediate
+  notifies :run, 'execute[add-bitlbee-gpg-key]', :immediately
 end
 
 # add the key
@@ -32,7 +32,7 @@ sudo apt-key add - << EOL
 EOL
   EOF
   action :nothing
-  notifies :run, 'execute[apt-get update]', :immediate
+  notifies :run, 'execute[apt-get update]', :immediately
 end
 
 # install bitlbee
